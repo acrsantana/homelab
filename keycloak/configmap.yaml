@@ -4,7 +4,7 @@ metadata:
   name: postgres-secret
   namespace: keycloak
   labels:
-    app: postgres
+    app: postgres-kc
 data:
   POSTGRES_DB: keycloak
   POSTGRES_USER: keycloak_user
