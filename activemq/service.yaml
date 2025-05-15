@@ -5,7 +5,7 @@ metadata:
     app: active-mq
     project: fractal
   name: active-mq
-  namespace: fractal
+  namespace: brokers
 spec:
   ports:
     - name: dashboard
