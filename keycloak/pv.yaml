@@ -5,7 +5,7 @@ metadata:
   namespace: keycloak
   labels:
     type: local
-    app: postgres
+    app: postgres-kc
 spec:
   storageClassName: local-path
   capacity:
