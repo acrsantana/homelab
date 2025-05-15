@@ -5,7 +5,7 @@ metadata:
   namespace: fractal
 data:
   DATABASE_DBNAME: "fractal_api_db"
-  DATABASE_HOST: "postgres.databases"
+  DATABASE_HOST: "postgis"
   DATABASE_PASSWORD: "root"
   DATABASE_PORT: "5432"
   DATABASE_USER: "fractal_api"
