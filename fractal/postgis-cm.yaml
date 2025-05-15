@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgis-secret
+  namespace: fractal
+  labels:
+    app: postgis
+    project: fractal
+data:
+  POSTGRES_DB: fractal_api_db
+  POSTGRES_USER: fractal_api
+  POSTGRES_PASSWORD: root
