@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fractal-api
+  namespace: fractal
+  labels:
+    app: fractal-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fractal-api
+  template:
+    metadata:
+      name: fractal-api
+      labels:
+        app: fractal-api
+    spec:
+      containers:
+        - name: fractal-api
+          image: cezaodabahia/fractal-api:3.7.8.3
+          imagePullPolicy: Always
+          volumeMounts:
+            - mountPath: /fractal/data
+              name: fractal-data
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: configmap-fractal-api
+          resources:
+            requests:
+              memory: "512M"
+              cpu: "50m"
+            limits:
+              memory: "2048Mi"
+              cpu: "1000m"
+      restartPolicy: Always
+      volumes:
+        - name: fractal-data
+          persistentVolumeClaim:
+            claimName: pvc-shared-api-core
