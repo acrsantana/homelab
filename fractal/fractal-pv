@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-fractal-data
+spec:
+  accessModes:
+    - ReadWriteMany
+  capacity:
+    storage: 30Gi
+  hostPath:
+    path: /data/fractal
+  volumeMode: Filesystem
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: local-storage-rwm
