@@ -21,7 +21,7 @@ spec:
           args: ["start"]
           env:
             - name: KC_DB
-              value: keycloak
+              value: postgres
             - name: KC_DB_URL
               value: "jdbc:postgresql://postgres.postgres:5432/keycloak"
             - name: KC_DB_USERNAME
