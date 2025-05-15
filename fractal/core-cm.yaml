@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap-fractal-core
+  namespace: fractal
+data:
+  DATABASE_DBNAME: "fractal_api_db"
+  DATABASE_HOST: "postgres.databases"
+  DATABASE_PASSWORD: "root"
+  DATABASE_PORT: "5432"
+  DATABASE_USER: "fractal_api"
+  FILEPATH_INPUT: /fractal/data/input
+  FILEPATH_OUTPUT: /fractal/data/output
+  PYTHONUNBUFFERED: "TRUE"
+  IMAGE_VERSION: "dev"
+  TZ: "America/Sao_Paulo"
+  ACTIVEMQ_BROKER-URL: "active-mq.brokers"
+  ACTIVEMQ_USER: "admin"
+  ACTIVEMQ_PASSWORD: "admin"
+  ACTIVEMQ_PORT: "61613"
+  ACTIVEMQ_PROCESS-QUEUE: "fractal.start.process.queue"
