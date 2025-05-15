@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: postgis-volume
+  namespace: fractal
+  labels:
+    type: local
+    project: fractal
+    app: postgis
+spec:
+  storageClassName: local-path
+  capacity:
+    storage: 30Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /data/postgis
