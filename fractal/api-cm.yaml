@@ -5,8 +5,8 @@ metadata:
   namespace: fractal
 data:
   FRACTAL_CORE_SERVICE: "http://fractal-core.fractal:5000"
-  FRACTAL_DB_HOST: "postgis.fractal"
-  FRACTAL_DB_URL: "jdbc:postgresql://postgis.fractal:5432/fractal_api_db"
+  FRACTAL_DB_HOST: "postgis"
+  FRACTAL_DB_URL: "jdbc:postgresql://postgis:5432/fractal_api_db"
   FRACTAL_INPUT_FILEPATH: "/fractal/data/input/"
   FRACTAL_MQ_CREATE_CITY: "fractal.create.city.queue"
   FRACTAL_MQ_PROCESS_QUEUE: "fractal.start.process.queue"
