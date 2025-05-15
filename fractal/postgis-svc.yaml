@@ -14,4 +14,4 @@ spec:
       protocol: TCP
       targetPort: 5432
   selector:
-    app: postgres
+    app: postgis
