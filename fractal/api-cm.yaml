@@ -5,8 +5,8 @@ metadata:
   namespace: fractal
 data:
   FRACTAL_CORE_SERVICE: "http://fractal-core.fractal:5000"
-  FRACTAL_DB_HOST: "postgres.databases"
-  FRACTAL_DB_URL: "jdbc:postgresql://postgres.databases:5432/fractal_api_db"
+  FRACTAL_DB_HOST: "postgis.fractal"
+  FRACTAL_DB_URL: "jdbc:postgresql://postgis.fractal:5432/fractal_api_db"
   FRACTAL_INPUT_FILEPATH: "/fractal/data/input/"
   FRACTAL_MQ_CREATE_CITY: "fractal.create.city.queue"
   FRACTAL_MQ_PROCESS_QUEUE: "fractal.start.process.queue"
@@ -18,7 +18,7 @@ data:
   TZ: "America/Sao_Paulo"
   FRACTAL_AIRFLOW_PASSWORD: "airflow"
   FRACTAL_AIRFLOW_USER: "airflow"
-  FRACTAL_API_PASSWORD: "MyPostgresSuperSecurePassword"
-  FRACTAL_API_USERNAME: "postgres"
+  FRACTAL_API_PASSWORD: "root"
+  FRACTAL_API_USERNAME: "fractal_api"
   FRACTAL_MQ_PASSWORD: "admin"
   FRACTAL_MQ_USERNAME: "admin"
