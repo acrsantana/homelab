@@ -20,11 +20,11 @@ spec:
         image: cezaodabahia/fractal-core:3.7.0.2
         resources:
             requests:
-              memory: "512M"
+              memory: "500Mi"
               cpu: "100m"
             limits:
               memory: "3400Mi"
-              cpu: "1200m"
+              cpu: "1300m"
         ports:
         - containerPort: 5000
         envFrom:
