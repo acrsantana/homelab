@@ -20,8 +20,8 @@ spec:
         image: cezaodabahia/fractal-core:3.7.0.2
         resources:
             requests:
-              memory: "500Mi"
-              cpu: "100m"
+              memory: "300Mi"
+              cpu: "10m"
             limits:
               memory: "3400Mi"
               cpu: "1300m"
