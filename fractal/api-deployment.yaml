@@ -31,11 +31,11 @@ spec:
                 name: configmap-fractal-api
           resources:
             requests:
-              memory: "512M"
+              memory: "500Mi"
               cpu: "50m"
             limits:
-              memory: "2048Mi"
-              cpu: "1000m"
+              memory: "2Gi"
+              cpu: "1"
       restartPolicy: Always
       volumes:
         - name: fractal-data
