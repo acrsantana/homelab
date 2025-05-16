@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fractal-webui
+  namespace: fractal
+  labels:
+    app: fractal-mfe
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fractal-mfe
+  template:
+    metadata:
+      name: fractal-mfe
+      labels:
+        app: fractal-mfe
+    spec:
+      containers:
+        - name: fractal-mfe
+          image: cezaodabahia/fractal-mfe:3.7.7.0
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: "256M"
+              cpu: "50m"
+            limits:
+              memory: "2048Mi"
+              cpu: "1000m"
+          ports:
+            - containerPort: 80
+              protocol: TCP
+      restartPolicy: Always
