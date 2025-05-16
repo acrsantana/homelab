@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: fly-webui
+  namespace: fractal
+spec:
+  selector:
+    app: fly-webui
+  ports:
+    - name: http
+      nodePort: 32000
+      port: 80
+      protocol: TCP
+      targetPort: 80
+  type: NodePort
