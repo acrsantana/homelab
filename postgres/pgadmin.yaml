@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pgAdmin
+  name: pgadmin
   namespace: fractal
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: pgAdmin
+      app: pgadmin
   template:
     metadata:
       labels:
-        app: pgAdmin
+        app: pgadmin
     spec:
       containers:
         - name: pgadmin
