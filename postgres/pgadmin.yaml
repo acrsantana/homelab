@@ -23,10 +23,10 @@ spec:
             - configMapRef:
                 name: pgadmin-cm
           volumeMounts:
-    - mountPath: /var/lib/pgadminls -la
-      name: pgadmin-volume
-  volumes:
-  - name: pgadmin-volume
-    hostPath:
-      path: /data/pgadmin
-      type: DirectoryOrCreate
+            - mountPath: /var/lib/pgadmin
+              name: pgadmin-volume
+      volumes:
+        - name: pgadmin-volume
+          hostPath:
+            path: /data/pgadmin
+            type: DirectoryOrCreate
