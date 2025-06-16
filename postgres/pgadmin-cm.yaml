@@ -4,5 +4,5 @@ metadata:
   name: pgadmin-cm
   namespace: fractal
 data:
-  PGADMIN_DEFAULT_EMAIL: "fractal_api_db"
-  PGADMIN_DEFAULT_PASSWORD: ""
+  PGADMIN_DEFAULT_EMAIL: "fractal-dev@minsait.com"
+  PGADMIN_DEFAULT_PASSWORD: "ZnJhY3RhbC11c2VyLXBhc3MK"
