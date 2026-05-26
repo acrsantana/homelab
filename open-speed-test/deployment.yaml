@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: open-speed-test
+  namespace: homelab-tools
+  labels:
+    app: open-speed-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: open-speed-test
+  template:
+    metadata:
+      labels:
+        app: open-speed-test
+    spec:
+      containers:
+        - name: openspeedtest
+          image: openspeedtest/latest:latest
+          ports:
+            - containerPort: 3000
+              name: http
+          env:
+            - name: ENABLE_LETSENCRYPT
+              value: "False"
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "1000m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: open-speed-test-service
+  namespace: homelab-tools
+spec:
+  selector:
+    app: open-speed-test
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: open-speed-test
+  namespace: homelab-tools
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod-dns"
+    # Removidas as annotations do Nginx. O Traefik lida nativamente bem com o tráfego HTTP bruto 
+    # do OpenSpeedTest sem precisar de ajustes agressivos de buffer na maioria dos homelabs.
+spec:
+  rules:
+    - host: "speedtest.cezaodabahia.com.br"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: open-speed-test-service
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - "speedtest.cezaodabahia.com.br"
+      secretName: open-speed-test-tls-secret
