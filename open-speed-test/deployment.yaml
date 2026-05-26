@@ -15,22 +15,25 @@ spec:
       labels:
         app: open-speed-test
     spec:
+      hostNetwork: true # Faz o container rodar direto na interface física do servidor
+      dnsPolicy: ClusterFirstWithHostNet # Mantém a resolução de DNS do K8s ativa no pod
       containers:
         - name: openspeedtest
           image: openspeedtest/latest:latest
           ports:
             - containerPort: 3000
+              hostPort: 3000 # Mapeia a porta 3000 física do host para o container
               name: http
           env:
             - name: ENABLE_LETSENCRYPT
               value: "False"
           resources:
             requests:
-              memory: "64Mi"
+              memory: "128Mi"
               cpu: "100m"
             limits:
-              memory: "512Mi"
-              cpu: "1000m"
+              memory: "256Mi"
+              cpu: "300m"
 ---
 apiVersion: v1
 kind: Service
@@ -45,6 +48,16 @@ spec:
       port: 80
       targetPort: 3000
 ---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: speedtest-buffering
+  namespace: homelab-tools
+spec:
+  buffering:
+    maxRequestBodyBytes: 0
+    memRequestBodyBytes: 0
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -52,8 +65,7 @@ metadata:
   namespace: homelab-tools
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod-dns"
-    # Removidas as annotations do Nginx. O Traefik lida nativamente bem com o tráfego HTTP bruto 
-    # do OpenSpeedTest sem precisar de ajustes agressivos de buffer na maioria dos homelabs.
+    traefik.ingress.kubernetes.io/router.middlewares: homelab-tools-speedtest-buffering@kubernetescrd
 spec:
   rules:
     - host: "speedtest.cezaodabahia.com.br"
